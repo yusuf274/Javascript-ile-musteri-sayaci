@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Count Up Animation</title>
+  <meta charset="UTF-8">
+
+  <!-- FontAwesome Icons -->
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+          rel="stylesheet"/>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <style>
+
+    .sayacicon{
+      font-size: 40px;
+      color: white;
+      font-family: 'Poppins';
+
+    }
+    .sayacdeger span{
+      font-size: 50px;
+      font-weight: bolder;
+      color: white;
+      font-family: 'Poppins';
+
+    }
+
+    .sayacbilgi span{
+      font-size: 25px;
+      font-weight: bold;
+      color: white;
+      font-family: 'Poppins';
+    }
+
+  </style>
+</head>
+<body style="background: #ffffff">
+<!--ontouch mobilde çalışır, mouseover ise masaüstünde çalışır, bunu aslında üst dive vermek daha mantıklı burada sadece div üzerine gelince tetiklenir. Daha hoş bir site olması için bundan önceki dive vermeliyiz-->
+<section id="sayacalani" ontouchstart="sayacbasla()" onmouseover="sayacbasla()" style="margin-top: 200px;background: #123d39">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="text-center p-2 mt-5 mb-5">
+          <div class="sayacicon">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <div class="sayacdeger">
+            <span id="toplamdeneyim" class="num" data-val="10">0</span>
+          </div>
+
+          <div class="sayacbilgi">
+            <span class="text">Toplam Deneyim</span>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="text-center p-2 mt-5 mb-5">
+          <div class="sayacicon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="sayacdeger">
+            <span id="toplammusteri" class="num" data-val="800">0</span>
+          </div>
+
+          <div class="sayacbilgi">
+            <span class="text">Toplam Müşteri</span>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="text-center p-2 mt-5 mb-5">
+          <div class="sayacicon">
+            <i class="fa-sharp fa-solid fa-network-wired"></i>
+          </div>
+          <div class="sayacdeger">
+            <span id="toplamhizmet" class="num" data-val="1200">0</span>
+          </div>
+
+          <div class="sayacbilgi">
+            <span class="text">Toplam Hizmet</span>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="text-center p-2 mt-5 mb-5">
+          <div class="sayacicon">
+            <i class="fa-solid fa-face-smile"></i>
+          </div>
+          <div class="sayacdeger">
+            <span id="toplamguleryuz" class="num" data-val="1200">0</span>
+          </div>
+
+          <div class="sayacbilgi">
+            <span class="text">Toplam Güleryüz</span>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+
+
+  function sayacbasla(){
+
+    var invertal=10000; //sayma hızı için gerekli bir değer
+
+    let toplamdeneyim = document.getElementById('toplamdeneyim').getAttribute("data-val");
+    let startdeneyim=0; //Burandan saymaya başlıyor
+    let saymahiz=Math.floor(invertal/toplamdeneyim); //burda bir yuvarlama yapıyoruz
+    let counter = setInterval(function () {
+      startdeneyim += 1; //burda değeri bir bir arttırıp sonra aşağıda anlık ekrana bastırıyoruz
+      document.getElementById('toplamdeneyim').innerHTML = startdeneyim;
+      if (startdeneyim == toplamdeneyim) { //burada eşitlenince saymayı bırakıyor. yoksa sürekli sayar sayar dururdu
+        clearInterval(counter); //
+      }
+    }, saymahiz);
+
+    //forech döngüsü kullanarak daha az kod kullanılabilir lakin bu şekilde daha açıklayıcı olduğuna inanıyorum. 3-5 faz kod sorun olmaz :)
+
+
+    let toplammusteri = document.getElementById('toplammusteri').getAttribute("data-val");
+    let startmusteri=0;
+    let saymahiz2=Math.floor(invertal/toplammusteri);
+    var counter2 = setInterval(function () {
+      startmusteri += 1;
+
+      document.getElementById('toplammusteri').innerHTML = startmusteri;
+      if (startmusteri == toplammusteri) {
+        clearInterval(counter2);
+      }
+    }, saymahiz2);
+
+
+
+    let toplamhizmet = document.getElementById('toplamhizmet').getAttribute("data-val");
+    let starthizmet=0;
+    let saymahiz3=Math.floor(invertal/toplamhizmet);
+    var counter3 = setInterval(function () {
+      starthizmet += 1;
+
+      document.getElementById('toplamhizmet').innerHTML = starthizmet;
+      if (starthizmet == toplamhizmet) {
+        clearInterval(counter3);
+      }
+    }, saymahiz3);
+
+
+
+    let toplamguleryuz = document.getElementById('toplamguleryuz').getAttribute("data-val");
+    let startguleryuz=0;
+    let saymahiz4=Math.floor(invertal/toplamguleryuz);
+    var counter4 = setInterval(function () {
+      startguleryuz += 1;
+
+      document.getElementById('toplamguleryuz').innerHTML = startguleryuz;
+      if (startguleryuz == toplamguleryuz) {
+        clearInterval(counter4);
+      }
+    }, saymahiz4);
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
